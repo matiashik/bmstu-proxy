@@ -15,7 +15,7 @@ set :static_cache_control, [:public]
 Cache = Zache.new
 
 def schedule(uid)
-  Cache.get(:schedule, lifetime: 6 * 60 * 60) do
+  Cache.get("schedule:#{uid}", lifetime: 6 * 60 * 60) do
     schedule = Api.public(uid)
 
     Parser.public(schedule).group_by { it[:day] }.map do |day, data|

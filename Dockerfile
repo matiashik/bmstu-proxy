@@ -1,4 +1,4 @@
-FROM ruby:4.0.1-slim
+FROM ruby:4.0.1-slim as base
 
 ENV RACK_ENV="production" \
   PORT="4567"
@@ -12,6 +12,8 @@ WORKDIR /app
 COPY . .
 
 RUN bundle install
+
+FROM base
 
 EXPOSE $PORT
 
