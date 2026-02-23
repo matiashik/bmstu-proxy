@@ -1,0 +1,76 @@
+<!doctype html>
+<html data-color-scheme="light">
+  <head>
+    <title>Расписание</title>
+
+    <link rel="stylesheet" href="/stylesheet.css">
+  </head>
+  <body>
+    <header>
+      <h1 class="centered"><%= link_to_lks(@uid) %></h1>
+    <header>
+    <main class="width larger">
+      <% @schedule.each do |day, schedule| %>
+        <table class="center">
+            <thead>
+              <th colspan="2"><%= wday_to_day(day) %></th>
+            </thead>
+            <thead>
+              <% if @current[:week] == :ch %>
+                <th><mark>Числитель</mark></th>
+                <th>Знаменатель</th>
+              <% else %>
+                <th>Числитель</th>
+                <th><mark>Знаменатель</mark></th>
+              <% end %>
+            </thead>
+            <tbody>
+              <tr class="hidden"></tr>
+              <% order = 0 %>
+              <% loop do %>
+                <% schedule = schedule.select { it[:order] >= order } %>
+                <% break if schedule.empty? %>
+                <% units = schedule.select { it[:order] == order } %>
+                <% order += 1 %>
+                <% next if units.empty? %>
+
+                <% if all = units.find { it[:week] == :all } %>
+                  <tr><td colspan="2"><b><%= all[:time] %></b></td></tr>
+                  <tr>
+                    <td colspan="2">
+                      <p><%= all[:discipline] %></p>
+                      <p><%= all[:place] %></p>
+                      <p><%= all[:teachers] %></p>
+                    </td>
+                  </tr>
+                <% else %>
+                  <% ch = units.find { it[:week] == :ch } %>
+                  <% zn = units.find { it[:week] == :zn } %>
+                  <tr>
+                    <td><b><%= ch && ch[:time] %></b></td>
+                    <td><b><%= zn && zn[:time] %></b></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <% unless ch.nil? %>
+                        <p><%= ch[:discipline] %></p>
+                        <p><%= ch[:place] %></p>
+                        <p><%= ch[:teachers] %></p>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% unless zn.nil? %>
+                        <p><%= zn[:discipline] %></p>
+                        <p><%= zn[:place] %></p>
+                        <p><%= zn[:teachers] %></p>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+        </table>
+      <% end %>
+    </main>
+  </body>
+</html>
