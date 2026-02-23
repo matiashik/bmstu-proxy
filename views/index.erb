@@ -16,7 +16,7 @@
               <th colspan="2"><%= wday_to_day(day) %></th>
             </thead>
             <thead>
-              <% if @current[:week] == :ch %>
+              <% if @current[:week] == :ch && @current[:day] <= day %>
                 <th><mark>Числитель</mark></th>
                 <th>Знаменатель</th>
               <% else %>
