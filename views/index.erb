@@ -39,7 +39,7 @@
                   <tr>
                     <td colspan="2">
                       <p><%= all[:discipline] %></p>
-                      <p><%= all[:place] %></p>
+                      <p><%= all[:type] %> <%= all[:place] %></p>
                       <p><%= all[:teachers] %></p>
                     </td>
                   </tr>
@@ -54,14 +54,14 @@
                     <td>
                       <% unless ch.nil? %>
                         <p><%= ch[:discipline] %></p>
-                        <p><%= ch[:place] %></p>
+                        <p><%= ch[:type] %> <%= ch[:place] %></p>
                         <p><%= ch[:teachers] %></p>
                       <% end %>
                     </td>
                     <td>
                       <% unless zn.nil? %>
                         <p><%= zn[:discipline] %></p>
-                        <p><%= zn[:place] %></p>
+                        <p><%= zn[:type] %> <%= zn[:place] %></p>
                         <p><%= zn[:teachers] %></p>
                       <% end %>
                     </td>
