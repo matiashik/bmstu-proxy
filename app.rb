@@ -36,11 +36,13 @@ end
 helpers do
   DAYS = %w[Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье]
 
+  # https://lks.bmstu.ru/portal4/cookie/login?back=https%3A%2F%2Flks.bmstu.ru%2Fprofile&profile_any=true
   def link_to_lks(uid)
-    href = "https://lks.bmstu.ru/schedule/#{uid}"
+    query = Rack::Utils.build_query({ back: "https://lks.bmstu.ru/progress" })
+    href = "https://lks.bmstu.ru/portal4/cookie/login?#{query}"
 
     <<~HTML
-      <a href="#{href}" class="mx-4" target="_blank">ЛК МГТУ</a>
+      <a href="#{href}" class="mx-4" target="_blank">УСПЕВАЕМОСТЬ</a>
     HTML
   end
 
