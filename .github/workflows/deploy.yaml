@@ -39,6 +39,6 @@ jobs:
             -H "Authorization: ${{ secrets.DEPLOY_API_TOKEN }}" \
             -d '{
               "image": "ghcr.io/${{ github.repository }}:latest",
-              "tag": "${{ github.repository }}",
+              "tag": "${{ vars.APPLICATION_TAG }}",
               "ports": "${{ vars.HOST_PORT }}:${{ vars.CONTAINER_PORT }}"
             }'
