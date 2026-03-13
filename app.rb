@@ -40,7 +40,15 @@ helpers do
     href = "https://lks.bmstu.ru/schedule/#{uid}"
 
     <<~HTML
-      <a href="#{href}">ЛК МГТУ</a>
+      <a href="#{href}" class="mx-4" target="_blank">ЛК МГТУ</a>
+    HTML
+  end
+
+  def link_to_mail(uid)
+    href = "https://student.bmstu.ru"
+
+    <<~HTML
+      <a href="#{href}" class="mx-4" target="_blank">ПОЧТА</a>
     HTML
   end
 

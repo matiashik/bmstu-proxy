@@ -7,7 +7,10 @@
   </head>
   <body>
     <header>
-      <h1 class="centered"><%= link_to_lks(@uid) %></h1>
+      <h1 class="centered">
+        <%= link_to_lks(@uid) %>
+        <%= link_to_mail(@uid) %>
+      </h1>
     <header>
     <main class="width larger">
       <% @schedule.each do |day, schedule| %>
