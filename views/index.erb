@@ -11,6 +11,11 @@
         <%= link_to_lks(@uid) %>
         <%= link_to_mail(@uid) %>
       </h1>
+      <h2 class="centered">
+        <%= wday_to_day(@current[:day]) %>,
+        <%= @current[:date].strftime("%D") %> -
+        <%= @current[:name] %>
+      </h2>
     <header>
     <main class="width larger">
       <% @schedule.each do |day, schedule| %>

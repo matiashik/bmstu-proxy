@@ -19,12 +19,14 @@ module Parser
 
     def current(raw)
       data = raw["data"]
+      date = Time.new(raw["date"])
 
       {
         name: data["weekName"].capitalize,
         week: week_short_name(data["weekShortName"]),
         number: data["weekNumber"],
-        day: day(raw["date"])
+        day: date.to_date.cwday,
+        date: date
       }
     end
 
@@ -50,10 +52,6 @@ module Parser
       when "зн"
         :zn
       end
-    end
-
-    def day(datetime)
-      Time.new(datetime).wday
     end
   end
 end
