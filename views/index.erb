@@ -24,13 +24,7 @@
               <th colspan="2"><%= wday_to_day(day) %></th>
             </thead>
             <thead>
-              <% if @current[:week] == :ch && @current[:day] <= day %>
-                <th><mark>Числитель</mark></th>
-                <th>Знаменатель</th>
-              <% else %>
-                <th>Числитель</th>
-                <th><mark>Знаменатель</mark></th>
-              <% end %>
+              <%= header_for(@current[:week], @current[:day] > day) %>
             </thead>
             <tbody>
               <tr class="hidden"></tr>

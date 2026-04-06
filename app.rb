@@ -54,6 +54,17 @@ helpers do
     HTML
   end
 
+  def header_for(week, next_week)
+    th = -> { "<th>#{it}</th>" }
+    mark = -> { th.("<mark>#{it}</mark>") }
+
+    if (week == :ch && !next_week) || (week == :zn && next_week)
+      mark.("Числитель") + th.("Знаменатель")
+    else
+      th.("Числитель") + mark.("Знаменатель")
+    end
+  end
+
   def wday_to_day(wday)
     DAYS[wday - 1]
   end
